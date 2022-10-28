@@ -1,17 +1,24 @@
 const router = require("express").Router();
 const { v4: uuidv4 } = require('uuid');
 const fs = require("fs");
+const util = require("util");
+const readFileAsync = util.promisify(fs.readFile);
+const writeFileAsync = util.promisify(fs.writeFile);
+// let note = readFileAsync("./db/db.json", "utf8");
 
+function returnNote(){
+  return readFileAsync("./db/db.json", "utf8");
+}
 router.get("/notes", (req, res) => {
-  let note = fs.readFile("db/db.json");
+ returnNote().then(notes => {
+  console.log(notes)
+ })
+  
 
-  note = JSON.parse(note);
-
-  res.json(note);
 });
 
 router.post("/notes", (req, res) => {     
-  let note = fs.readFile("db/db.json");
+  let note = readFileAsync("./db/db.json", "utf8");
   note = JSON.parse(note);
 
   console.log(req.body);
@@ -21,13 +28,12 @@ router.post("/notes", (req, res) => {
     text: req.body.text,
     id: uuidv4(),
   };
+  console.log(newNote);
 
-  // note.push(newNote);
+  note.push(newNote);
 
-  // fs.writeFileSync("db/db.json", JSON.stringify(note));
-
-  // res.json(note);
-  //res.json(note);
+  fs.writeFileSync("./db/db.json", JSON.stringify(note));
+  res.json(note);
 
 });
 
