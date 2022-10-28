@@ -12,24 +12,12 @@ const app = express();
 const PORT = 3000;
 
 //added a static middleware for serving assets in the public folder
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use("/api", apiRoutes);
 app.use("/", htmlRoutes);
 
-// app.post("/api/notes", (req, res) =>{
-//   console.log(req.body)
-//   res.json(db)
-// })
 
-// app.get("/api/notes", (req, res) =>{
-//   console.log(req.body)
-//   res.json(db)
-// })
-
-
-//The following API routes should be created:
-//GET /api/notes should read the db.json file and return all saved notes as JSON.
-// app.post('/api/notes', (req, res) => res.json() => {
-// });
 
 app.listen(PORT, () => console.log(`Example app listening at http://localhost:${PORT}`));

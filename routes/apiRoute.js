@@ -3,23 +3,24 @@ const { v4: uuidv4 } = require('uuid');
 const fs = require("fs");
 
 router.get("/notes", (req, res) => {
-  let note = fs.readFileSync("db/db.json");
+  let note = fs.readFile("db/db.json");
+
   note = JSON.parse(note);
 
   res.json(note);
 });
 
-router.post("/notes", (req, res) => {
-  let note = fs.readFileSync("db/db.json");
+router.post("/notes", (req, res) => {     
+  let note = fs.readFile("db/db.json");
   note = JSON.parse(note);
 
   console.log(req.body);
 
-  // let newNote = {
-  //   title: req.body.title,
-  //   text: req.body.text,
-  //   id: uuidv4(),
-  // };
+  let newNote = {
+    title: req.body.title,
+    text: req.body.text,
+    id: uuidv4(),
+  };
 
   // note.push(newNote);
 
