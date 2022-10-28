@@ -7,7 +7,6 @@ router.get("/notes", (req, res) => {
   note = JSON.parse(note);
 
   res.json(note);
-
 });
 
 router.post("/notes", (req, res) => {
@@ -26,7 +25,7 @@ router.post("/notes", (req, res) => {
 
   // fs.writeFileSync("db/db.json", JSON.stringify(note));
 
-  res.json(note);
+  // res.json(note);
   //res.json(note);
 
 });
