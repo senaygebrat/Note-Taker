@@ -7,7 +7,7 @@ const apiRoutes = require("./routes/apiRoute");
 
 //sets up the express app
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 //added a static middleware for serving assets in the public folder
 app.use(express.json());
@@ -17,5 +17,5 @@ app.use("/api", apiRoutes);
 app.use("/", htmlRoutes);
 
 
-
+//execute the port
 app.listen(PORT, () => console.log(`Example app listening at http://localhost:${PORT}`));
