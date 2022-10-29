@@ -2,10 +2,8 @@
 const express = require('express');
 const { fstat } = require('fs');
 const path = require('path');
-// const db = require("./Develop/db/db.json");
 const htmlRoutes = require("./routes/htmlRoute");
 const apiRoutes = require("./routes/apiRoute");
-// const uniqueId = require('unique-id'); 
 
 //sets up the express app
 const app = express();
